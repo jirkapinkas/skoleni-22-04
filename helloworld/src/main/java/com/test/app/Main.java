@@ -18,7 +18,15 @@ import javax.sql.DataSource;
 public class Main {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Main.class);
+        // Tohle funguje s nastavenim profilu:
+        // -Dspring.profiles.active=dummy
+        // -Dspring.profiles.active=jdbc
+//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Main.class);
+
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        applicationContext.getEnvironment().setActiveProfiles("dummy");
+        applicationContext.register(Main.class);
+        applicationContext.refresh();
 
         ItemService itemService = applicationContext.getBean(ItemService.class);
 
