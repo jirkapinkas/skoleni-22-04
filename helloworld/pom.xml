@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <hsqldb.version>2.3.4</hsqldb.version>
     </properties>
 
     <dependencies>
@@ -21,18 +22,15 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.3.4</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>5.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -41,16 +39,16 @@
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
         </dependency>
     </dependencies>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.6</version>
     </parent>
 
+    <!-- Funguje ve starsi verzi commitu -->
 <!--
     <dependencyManagement>
         <dependencies>
@@ -65,6 +63,7 @@
     </dependencyManagement>
 -->
 
+    <!-- Funguje ve starsi verzi commitu -->
 <!--
     <dependencyManagement>
         <dependencies>
