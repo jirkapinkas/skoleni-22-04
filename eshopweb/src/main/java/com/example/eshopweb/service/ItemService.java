@@ -7,6 +7,7 @@ import com.example.eshopweb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -38,9 +39,16 @@ public class ItemService {
         return itemMapper.toDto(itemRepository.findAll());
     }
 
+    @Transactional
     public Optional<ItemDto> findById(int id) {
         return itemRepository.findById(id)
                 .map(itemMapper::toDto);
+//        // POZOR!!! "item" je v managed stavu!!! Tzn. pred ukoncenim metody se provede UPDATE do databaze!!!
+//        Optional<Item> optional = itemRepository.findById(id);
+//        optional.ifPresent(item -> {
+//            item.setName(item.getName().toUpperCase());
+//        });
+//        return optional.map(itemMapper::toDto);
     }
 
 }
