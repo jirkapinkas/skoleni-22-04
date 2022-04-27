@@ -2,12 +2,13 @@ package com.example.eshopweb.controller;
 
 import com.example.eshopweb.dto.ItemDto;
 import com.example.eshopweb.entity.Item;
+import com.example.eshopweb.exception.NotFoundException;
 import com.example.eshopweb.service.ItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class ItemController {
 
     // http://localhost:8080/item/1
     @GetMapping("/{id}")
-    public Optional<ItemDto> item(@PathVariable int id) {
+    public ItemDto item(@PathVariable int id) {
         return itemService.findById(id);
     }
 

@@ -2,6 +2,7 @@ package com.example.eshopweb.service;
 
 import com.example.eshopweb.dto.ItemDto;
 import com.example.eshopweb.entity.Item;
+import com.example.eshopweb.exception.NotFoundException;
 import com.example.eshopweb.mapper.ItemMapper;
 import com.example.eshopweb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +41,10 @@ public class ItemService {
     }
 
     @Transactional
-    public Optional<ItemDto> findById(int id) {
+    public ItemDto findById(int id) {
         return itemRepository.findById(id)
-                .map(itemMapper::toDto);
+                .map(itemMapper::toDto)
+                .orElseThrow(() -> new NotFoundException("Item with id '" + id + "' was not found!"));
 //        // POZOR!!! "item" je v managed stavu!!! Tzn. pred ukoncenim metody se provede UPDATE do databaze!!!
 //        Optional<Item> optional = itemRepository.findById(id);
 //        optional.ifPresent(item -> {
